@@ -1,0 +1,25 @@
+---
+# In this file we are going to create a playbook that will call the roles we have created.
+- name: Update servers to latest packages
+  hosts: all
+  roles:
+    - update_servers
+  become: yes
+
+- name: Install and configure Tomcat
+  hosts: tomcat_server
+  roles:
+    - tomcat
+  become: yes
+
+- name: Install and configure Apache
+  hosts: apache_server
+  roles:
+    - apache
+  become: yes
+
+- name: Firewall configuration for Tomcat and Apache servers
+  hosts: all
+  roles:
+    - firewall
+  become: yes

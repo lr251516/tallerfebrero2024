@@ -23,15 +23,11 @@ Algunas de las tareas que hemos automatizado en este proyecto incluyen:
 ## Cómo Usar Este Repositorio 🚀
 Para utilizar este repositorio y comenzar con la automatización de tareas:
 
-1. Clona este repositorio en tu máquina local.
+1. Clona este repositorio en tu máquina local. https://github.com/lr251516/tallerfebrero2024 
 2. Asegúrate de tener Ansible instalado. Si no lo tienes, sigue las instrucciones de instalación en la documentación oficial de Ansible.
 3. Explora los diferentes playbooks y roles disponibles en el repositorio.
 4. Configura tus inventarios y variables según sea necesario para adaptar las tareas de automatización a tu entorno.
 5. Ejecuta los playbooks de Ansible según tus requisitos específicos.
-
-¡Esperamos que este proyecto te ayude a comprender mejor el potencial de la automatización con Ansible y te permita optimizar tus procesos de administración de servidores! Si tienes alguna pregunta o sugerencia, no dudes en compartirla en la sección de problemas o enviarnos un correo electrónico.
-
-¡Feliz automatización! 🚀✨
 
 ## Créditos 💻
 Este trabajo fue realizado por Lucas Rodriguez y Santiago Lazaneo.

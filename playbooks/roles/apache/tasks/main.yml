@@ -9,21 +9,24 @@
         state: present
       when: ansible_os_family == "Debian"
 
-    - name: Enable Apache
+    - name: Enable Apache proxy module
       ansible.builtin.apache2_module:
         name: proxy
         state: present
       notify: Restart Apache
     
-    - name: Configure virtual host 
+    - name: Configure virtual host
       ansible.builtin.template:
         src: templates/reverse_proxy.conf.j2
         dest: /etc/apache2/sites-available/reverse_proxy.conf
       notify: Restart Apache
     
-    - name: Enable virtual host 
+    - name: Enable virtual host
       ansible.builtin.apache2_module:
         name: reverse_proxy
         state: present
       notify: Restart Apache
       
+
+
+

@@ -1,0 +1,72 @@
+---
+- name: Ensure JDK 1.8 and tar is installed
+  yum:
+    name: java-1.8.0-openjdk, tar
+    state: present
+
+- name: Ensure the group 'tomcat' exists
+  group:
+    name: tomcat
+    state: present
+
+- name: Ensure the user 'tomcat' exists
+  user:
+    name: tomcat
+    state: present
+    group: tomcat
+
+- name: Ensure the directory /opt/tomcat8 exists
+  file:
+    path: /opt/tomcat8
+    state: directory
+    mode: '0755'
+    owner: tomcat
+    group: tomcat
+
+- name: Download and extract Tomcat to /opt/tomcat8
+  unarchive:
+    src: "{{ download_url }}"
+    dest: /opt/tomcat8
+    mode: '0755'
+    remote_src: yes
+    owner: tomcat
+    group: tomcat
+
+- name: Find Tomcat extracted directory
+  find:
+    paths: "/opt/tomcat8"
+    file_type: directory
+    patterns: "apache-tomcat-*"
+  register: tomcat_dirs
+
+- name: Move Tomcat files to the correct directory
+  shell: "mv {{ item.path }}/* /opt/tomcat8/"
+  loop: "{{ tomcat_dirs.files }}"
+  when: tomcat_dirs.matched == 1
+  failed_when: false
+
+- name: Create Tomcat service file
+  copy:
+    content: |
+      [Unit]
+      Description=Tomcat Service
+      After=network.target
+
+      [Service]
+      Type=forking
+      User=tomcat
+      Environment="CATALINA_PID=/opt/tomcat8/logs/tomcat.pid"
+      Environment="CATALINA_HOME=/opt/tomcat8"
+      Environment="CATALINA_BASE=/opt/tomcat8"
+      Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+      ExecStart=/opt/tomcat8/bin/startup.sh
+      ExecStop=/opt/tomcat8/bin/shutdown.sh
+      Restart=on-failure
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/tomcat.service
+  notify: Enable and start Tomcat service
+
+
+  

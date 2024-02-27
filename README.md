@@ -1,4 +1,4 @@
-# Tarea Obligatoria: Automatización con Ansible 🛠️
+# Tarea Obligatoria: Automatización con Ansible 🛠
 
 ## Descripción 📝
 ¡Bienvenido al repositorio del TallerFebrero2024 sobre Automatización con Ansible! Este proyecto es resultado del esfuerzo conjunto de Lucas Rodriguez y Santiago Lazaneo, realizado como parte del trabajo obligatorio para el taller de servidores Linux.
@@ -9,9 +9,12 @@ En este proyecto, exploraremos cómo Ansible puede simplificar y agilizar la adm
 El repositorio está organizado de la siguiente manera:
 
 - *playbooks*: Contiene los playbooks de Ansible utilizados para realizar diferentes tareas de automatización.
-- *roles*: Incluye los roles de Ansible, cada uno diseñado para realizar una tarea específica de manera modular y reutilizable.
+- *roles*: Incluye los roles de Ansible, cada uno diseñado para realizar una tarea específica de manera modular y reutilizable. Cada rol puede tener las siguientes subcarpetas:
+  - *handlers*: Handlers utilizados en el rol.
+  - *tasks*: Tareas principales realizadas por el rol.
+  - *vars*: Variables utilizadas en el rol.
+  - *templates*: Plantillas utilizadas en el rol.
 - *inventories*: Aquí se encuentran los archivos de inventario de Ansible, que especifican los servidores sobre los cuales se ejecutarán las tareas de automatización.
-- *docs*: Documentación adicional, guías de instalación y otros recursos útiles.
 
 ## Tareas Automatizadas 🤖
 Algunas de las tareas que hemos automatizado en este proyecto incluyen:
@@ -23,7 +26,7 @@ Algunas de las tareas que hemos automatizado en este proyecto incluyen:
 ## Cómo Usar Este Repositorio 🚀
 Para utilizar este repositorio y comenzar con la automatización de tareas:
 
-1. Clona este repositorio en tu máquina local. https://github.com/lr251516/tallerfebrero2024 
+1. Clona este repositorio en tu máquina local.
 2. Asegúrate de tener Ansible instalado. Si no lo tienes, sigue las instrucciones de instalación en la documentación oficial de Ansible.
 3. Explora los diferentes playbooks y roles disponibles en el repositorio.
 4. Configura tus inventarios y variables según sea necesario para adaptar las tareas de automatización a tu entorno.

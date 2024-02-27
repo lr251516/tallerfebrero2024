@@ -1,0 +1,29 @@
+---
+- name: Install Apache for Ubuntu
+  hosts: apache_server
+  become: yes
+  tasks:
+    - name: Install Apache
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Enable Apache
+      ansible.builtin.apache2_module:
+        name: proxy
+        state: present
+      notify: Restart Apache
+    
+    - name: Configure virtual host 
+      ansible.builtin.template:
+        src: reverse?proxy.conf.j2
+        dest: /etc/apache2/sites-available/reverse_proxy.conf
+      notify: Restart Apache
+    
+    - name: Enable virtual host 
+      ansible.builtin.apache2_module:
+        name: reverse_proxy
+        state: present
+      notify: Restart Apache
+      

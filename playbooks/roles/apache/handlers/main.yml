@@ -1,0 +1,13 @@
+---
+
+- name: Restart Apache
+  ansible.builtin.service:
+    name: apache2
+    state: restarted
+
+- name: Restart Tomcat
+  ansible.builtin.service:
+    name: tomcat8
+    state: restarted
+  
+```

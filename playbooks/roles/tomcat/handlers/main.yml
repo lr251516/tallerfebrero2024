@@ -5,3 +5,9 @@
     state: started
     enabled: yes
     daemon_reload: yes
+
+- name: Restart Tomcat service
+  ansible.builtin.service:
+    name: tomcat
+    state: restarted
+    daemon_reload: yes

@@ -69,4 +69,10 @@
   notify: Enable and start Tomcat service
 
 
-  
+- name: Download sample war file
+  ansible.builtin.get_url:
+    url: https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war
+    dest: /opt/tomcat8/webapps
+    mode: '0644'
+  notify: Restart Tomcat service
+
